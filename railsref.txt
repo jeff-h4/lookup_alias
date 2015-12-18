@@ -1,0 +1,23 @@
+
+###### Create a plugin ##########################################
+rails plugin new jeffs_small_engine
+
+###### Create an engine ##########################################
+rails plugin new jeffs_powerful_engine --mountable
+# --mountable adds the following onto --full
+- Asset manifest files (application.js and application.css)
+- A namespaced ApplicationController stub
+- A namespaced ApplicationHelper stub
+- A layout view template for the engine
+- Namespace isolation to config/routes.rb:
+
+###### Engine Migration ##########################################
+#Copies engine migrations to the Application
+rake jeffs_powerful_engine:install:migrations
+#Copies multiple engine migrations over to the application
+rake railties:install:migrations
+# From application, can run migrations from only ONE migration
+rake db:migrate SCOPE=jeffs_powerful_engine
+# Revert all migrations from a particular engine
+rake db:migrate SCOPE=jeffs_powerful_engine VERSION=0
+##################################################################

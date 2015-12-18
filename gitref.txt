@@ -1,0 +1,7 @@
+
+### START
+# Fetches any new changes from the original Clio repo
+$ git fetch upstream
+# Merges any changes fetched into your working files
+$ git merge upstream/development
+### END
