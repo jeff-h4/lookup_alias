@@ -1,0 +1,8 @@
+
+##### Run Specs in Parallel ##################################
+rake 'parallel:spec[8]' (Note the single quotes are required if using zsh)
+##### Run tests through releaser script ######################
+./script/releaser.rb test --parallel-specs 8
+
+##############################################################
+
