@@ -20,4 +20,20 @@ rake railties:install:migrations
 rake db:migrate SCOPE=jeffs_powerful_engine
 # Revert all migrations from a particular engine
 rake db:migrate SCOPE=jeffs_powerful_engine VERSION=0
+
+###### Engine Path Notes##########################################
+### Routing Proxy
+# Ensure an Engine view refers to the Engine's path
+Do something like <%= link_to "Blog articles", jeffs_powerful_engine.articles_path %>
+# Ensure an Engine view refers to the Application's path
+Do something like <%= link_to "Home", main_app.root_path %>
+
+# Routing proxy is also useful when using the Engine to access the Application's helpers
+
+###### SQL Stuff ##########################################
+# Dump the SQL DB
+bundle exec rake db:structure:dump
+
 ##################################################################
+
+

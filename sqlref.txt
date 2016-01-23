@@ -1,0 +1,25 @@
+
+###### Launch Mysql Console ##########################################
+> mysql -u root -p
+# Then enter the root password
+
+###### Commands ##################################################
+> SHOW DATABASES;                   # Displays all DBs on the machine
+> USE my_chosen_db;                 # Selects the my_chosen_db for further operations
+> SHOW TABLES;                      # Displays all Tables within the selected DB
+> DESCRIBE my_chosen_table;         # Displays the columns within the selected Table
+> SHOW INDEXES FROM my_chosen_table # Displays all indexes within selected Table
+
+###### Useful Stuff ##################################################
+# Shows the SQL that would have created 'cliopetra_pets' table.
+> SHOW CREATE TABLE cliopetra_pets
+> ALTER TABLE cliopetra_pets ADD owner_id int(11) NOT NULL
+> ALTER TABLE cliopetra_pets DROP COLUMN owner_id
+# Adding an Index to a table (requires pre-existing column account_id)
+#   Note naming convention of index: index_<table_name>_on_<column_name>
+> ALTER TABLE cliopetra_pets ADD INDEX index_cliopetra_pets_on_account_id (account_id);
+# Remove Foreign Key Constraint
+> ALTER TABLE cliopetra_pets DROP FOREIGN KEY fk_account_id;
+##################################################################
+
+

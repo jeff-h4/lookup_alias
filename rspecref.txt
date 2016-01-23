@@ -4,5 +4,9 @@ rake 'parallel:spec[8]' (Note the single quotes are required if using zsh)
 ##### Run tests through releaser script ######################
 ./script/releaser.rb test --parallel-specs 8
 
+##### Run all model(controller/helper/request/mailer) specs ##
+rspec spec --tag type:model
+##### Run all specs except model(controller etc.) specs  #####
+rspec spec --tag ~js (Jeff: I don't know if this makes sense)
 ##############################################################
 

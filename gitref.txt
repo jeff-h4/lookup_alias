@@ -4,4 +4,22 @@
 $ git fetch upstream
 # Merges any changes fetched into your working files
 $ git merge upstream/development
+
+# List all local branches
+$ git branch --list
+# List all remotes
+$ git remote -v
+
+# Cleaning workspace
+# Revert all changed files back to unchanged state
+$ git reset --hard
+# Check to see what untracked files can be cleaned (but no delete)
+$ git clean -f -n
+# Delete the untracked files observed
+$ git clean -f
+
+# Stashing modified files
+$ git stash
+# Pull stashed files into current workspace
+$ git stash apply
 ### END
