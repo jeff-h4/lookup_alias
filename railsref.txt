@@ -34,6 +34,10 @@ Do something like <%= link_to "Home", main_app.root_path %>
 # Dump the SQL DB
 bundle exec rake db:structure:dump
 
+###### Debug Callbacks in Functions ######################
+# To find out who called the function, add
+puts caller
+# to the function and run it
 ##################################################################
 
 

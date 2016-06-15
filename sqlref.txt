@@ -3,6 +3,20 @@
 > mysql -u root -p
 # Then enter the root password
 
+##### Dump SQL DB ###################################################
+> mysqldump -u root -p[password] themis_development > [some_file.sql]
+# Note: You can also backup other DBs and tables (I think the names are unique)
+# Can specify all databases with --all-databases
+> mysql -u [uname] -p[pass] [db_to_restore] < [backupfile.sql]
+###### Debugging User Permissions ####################################
+# List Users in MySql
+SELECT user FROM mysql.user;
+# Show privileges for a User
+SHOW GRANTS FOR themis_dev@localhost;
+# Granting Privileges
+GRANT ALL ON th_development.* to 'th_dev'@'localhost' IDENTIFIED BY 'some_password';
+GRANT ALL ON th_test.* to 'th_test'@'localhost' IDENTIFIED BY 'some_password';
+
 ###### Commands ##################################################
 > SHOW DATABASES;                   # Displays all DBs on the machine
 > USE my_chosen_db;                 # Selects the my_chosen_db for further operations
@@ -20,6 +34,8 @@
 > ALTER TABLE cliopetra_pets ADD INDEX index_cliopetra_pets_on_account_id (account_id);
 # Remove Foreign Key Constraint
 > ALTER TABLE cliopetra_pets DROP FOREIGN KEY fk_account_id;
+# SQL Explain
+mysql> EXPLAIN SELECT `trust_line_items`.* FROM `trust_line_items` WHERE `trust_line_items`.`bill_id` = 1 AND (trust_line_items.matter_id IS NULL) ORDER BY date ASC \G;
 ##################################################################
 
 

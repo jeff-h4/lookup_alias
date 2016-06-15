@@ -1,3 +1,10 @@
 
 #Diff 2 directories
 diff -rw directory1 directory2 > diff.txt
+
+# Untar a file
+tar -xvf myfile.tar
+
+# Search for all files in current directory tree that contain a word
+# Then search and replace it with another word
+ag -rl "trustBill" ./ | xargs sed -i "" 's/trustBill/trustRequest/g'

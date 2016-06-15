@@ -3,13 +3,41 @@
 # Fetches any new changes from the original Clio repo
 $ git fetch upstream
 # Merges any changes fetched into your working files
-$ git merge upstream/development
+$ git merge upstream/master
+
+# If you've changed default remotes, and you're trying to get onto origin/master
+$ git branch --set-upstream master origin/master
+
+# Undo a merge you just made
+$ git reset --merge ORIG_HEAD
+# Undo a specific commit, whether or not it is the latest or further back
+$ git revert <bad_commit_SHA>
+# Rewind git history to N commits back (This will remove the commits made after the Target SHA)
+$ git reset --hard <target_commit_SHA>
+
+# Show filenames in log
+$ git log --name-status
 
 # List all local branches
 $ git branch --list
 # List all remotes
 $ git remote -v
+# Check a remote's FETCH config
+$ git config --get remote.brian.fetch
+# To fix the FETCH config, you can either
+% vim .git/config
+# Or just remove the remote and re-add
 
+# Checkout a new branch that tracks a Remote branch
+$ git checkout -b my_new_branch --track <remote>/<the base branch I want>
+e.g. git checkout -b clio-31234-some-feature --track brian/clio-12345-milestone-one
+
+# Rebase against upstream/master
+## otherwise known as replaying all commits in your current branch on upstream/master
+git rebase -i upstream/master
+
+# Amend last commit. (NOTE: When pushing, may have to force push. BEWARE!)
+$ git commit --amend
 # Cleaning workspace
 # Revert all changed files back to unchanged state
 $ git reset --hard
@@ -17,6 +45,7 @@ $ git reset --hard
 $ git clean -f -n
 # Delete the untracked files observed
 $ git clean -f
+
 
 # Stashing modified files
 $ git stash
