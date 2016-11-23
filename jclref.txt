@@ -1,0 +1,8 @@
+####################################
+# JCL
+####################################
+# Checkout a branch from JIRA
+jcl checkout CLIO-XXXXX (This will use the JIRA Pull Request field)
+
+# Generate a Sprint Report
+script/daily_sprint_report generate -s "A/P Aug 30 - Chairman Meow"

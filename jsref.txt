@@ -1,0 +1,9 @@
+
+#### For Chrome Dev Tools
+
+# Find scope of selected element
+jq($0).scope()
+jq($0).scope().nameOfController
+
+# How to run a specific JS test
+RAILS_ENV=test rake karma:grep[simpleString]

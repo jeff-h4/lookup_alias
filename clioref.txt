@@ -1,0 +1,9 @@
+
+##########################################
+# Disable Poller
+##########################################
+# config/environments/development.rb Line 151
+config.polling_frequency = 1.day
+
+# Install a specific hash of ThemisUI
+npm install --save github:clio/lib-themisui.git#7dc7fa4e61e501ec4fac59a81466753601074736
