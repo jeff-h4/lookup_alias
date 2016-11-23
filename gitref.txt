@@ -32,6 +32,9 @@ $ git config --get remote.brian.fetch
 $ git checkout -b my_new_branch --track <remote>/<the base branch I want>
 e.g. git checkout -b clio-31234-some-feature --track brian/clio-12345-milestone-one
 
+# Change the current remotely tracked branch
+$ git branch clio-39578-disburse-neg-protection -u origin/clio-35748-jeff-disbursement-master
+
 # Rebase against upstream/master
 ## otherwise known as replaying all commits in your current branch on upstream/master
 git rebase -i upstream/master
@@ -51,4 +54,8 @@ $ git clean -f
 $ git stash
 # Pull stashed files into current workspace
 $ git stash apply
+
+# Copy a file from another branch into your current branch
+git checkout sean-healy-branch -- some_unique_file.txt
+
 ### END

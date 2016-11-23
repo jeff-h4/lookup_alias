@@ -8,3 +8,18 @@ tar -xvf myfile.tar
 # Search for all files in current directory tree that contain a word
 # Then search and replace it with another word
 ag -rl "trustBill" ./ | xargs sed -i "" 's/trustBill/trustRequest/g'
+
+
+# File Descriptors (may be seen in Shell scripts)
+0 - Refers to Standard Input
+1 - Refers to Standard Output
+2 - Refers to Standard Error
+So 2>&1 means to interleave stderr stream with stdout
+
+2>/dev/null means to ignore the stderr stream
+
+#### Awk
+$0 means entire line
+$1-n means 1st-nth word (non whitespace) on the line
+
+

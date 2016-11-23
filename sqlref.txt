@@ -39,3 +39,17 @@ mysql> EXPLAIN SELECT `trust_line_items`.* FROM `trust_line_items` WHERE `trust_
 ##################################################################
 
 
+#################################################################
+SQL Training
+#################################################################
+SHOW TABLES;
+CREATE DATABASE studydb;
+USE studydb;
+SELECT DATABASE(); # displays currently selected DB
+SHOW TABLES;
+CREATE TABLE bicycle (brand VARCHAR(20), model VARCHAR(20), year DATE);
+INSERT INTO bicycle VALUES('Trek','520','2001-01-01');
+SELECT what-fields
+  FROM which_table
+  WHERE some_conditions;
+

@@ -40,4 +40,8 @@ puts caller
 # to the function and run it
 ##################################################################
 
-
+##################################################################
+# Basic Rails Generation
+##################################################################
+rails generate scaffold transaction trans_date:date trans_type:uint(3) currency:varchar(3) num_units:integer price:decimal fee:decimal adj_cost_base:decimal
+rails generate scaffold account name:string{32} classification:integer{3} currency:string{3}

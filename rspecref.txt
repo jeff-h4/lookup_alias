@@ -10,3 +10,62 @@ rspec spec --tag type:model
 rspec spec --tag ~js (Jeff: I don't know if this makes sense)
 ##############################################################
 
+##############################################################
+# Controller Spec
+# WARNING: Beware of before_filters that can redirect your requests
+##############################################################
+### Anonymous Controller ###
+  Within a Controller rspec, the helper method 'controller' is defined.
+  The following are equivalent:
+  1) allow_any_instance_of(TheJeffController).to receive(:people).and_return("soylent green")
+  2) allow(controller).to receive(:people).and_return("soylent green")
+
+### Stub a Helper function within a Controller Rspec ###
+  The helper never has any instances created. It's just included in the controller,
+  and instances of the controller are created
+  There are 2 ways to do this:
+  1) Stub the view_context (which is the helper object)
+    let(:view_context_double) { double(my_stub_function: "The answer is 42") }
+    allow(controller).to receive(:view_context).and_return(view_context_double)
+  2) Setup a receive mssage chain
+    allow(controller).to receive_message_chain(:view_context,:my_stub_function).and_return("The answer is 42")
+
+### Stub a Model's scope within a Controller Rspec ###
+  Example is: Liability Transactions Controller and its spec
+  I believe if you're ever going to stub a scope, it has to operate on the Model class,
+  and not an instance. So it should be something like:
+
+    allow(BankAccount).to receive(:with_non_zero_balance).and_return(BankAccount.all)
+
+### Testing JSON responses ###
+  # Define the correct hash as {my_key: "value"}.with_indfferent_access
+  #  JSON.parse(response.body) will return a hash, but the key will be stringified, so this will fix the comparison.
+  let(:correct_json) { {practice_panther: "it returns for another round"}.with_indifferent_access }
+  expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+  expect(JSON.parse(response.body)).to eq(correct_json)
+
+### Testing that a partial is rendered ###
+  it "renders the correct partial" do
+    get :edit, id: bank_transaction.id
+    expect(response).to render_template(partial: "bank_transactions/_dt_edit")
+  end
+
+### Testing that a function in the controller was called exactly 1 time ###
+  it "clears the balance cache" do
+    allow_any_instance_of(BankTransaction).to receive(:clear_balance_cache).and_return(true)
+    expect_any_instance_of(BankTransaction).to receive(:clear_balance_cache).exactly(1).times
+    subject
+  end
+
+### Testing that it throws an ActiveRecord::RecordNotFound error ###
+  it "throws an error" do                                                                                                         │##### Run all specs except model(controller etc.) specs  #####
+    expect{subject}.to raise_error(ActiveRecord::RecordNotFound)                                                                      │rspec spec --tag ~js (Jeff: I don't know if this makes sense)
+  end
+
+### Adding permissions to bypass the before filters ###
+  before do
+    allow(current_user).to receive(:has_role?).and_return(false)
+    allow(current_user).to receive(:has_role?).with('accounts').and_return(true)
+  end
+
+##############################################################
