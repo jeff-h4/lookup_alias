@@ -1,0 +1,14 @@
+# Say we want to change the mouse cursor size.
+# We need to recompile the gsetting schemas to make the change permanent
+$ cd /usr/share/glib-2.0/schemas
+# Create an override file
+$ sudo vi 50_unity-launcher.gschema.override
+# Content of the file should be:
+  1 [org.gnome.desktop.interface]
+  2 cursor-size=48                                                                 
+  3 
+
+# Recompile the schema
+$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+# You may need to manually update the current profile using the dconf-editor
