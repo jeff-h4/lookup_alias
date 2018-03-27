@@ -18,8 +18,15 @@ So 2>&1 means to interleave stderr stream with stdout
 
 2>/dev/null means to ignore the stderr stream
 
+# Find out if a package is installed
+% dpkg -l {package_name}
+# Upgrade a specific package
+% sudo apt-get install --only-upgrade <packagename>
+
 #### Awk
 $0 means entire line
 $1-n means 1st-nth word (non whitespace) on the line
 
-
+#### Webserver deployment ####
+If you need to set environment variables on production, edit /etc/environment and add
+the variables that you need.

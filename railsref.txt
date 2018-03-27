@@ -45,3 +45,9 @@ puts caller
 ##################################################################
 rails generate scaffold transaction trans_date:date trans_type:uint(3) currency:varchar(3) num_units:integer price:decimal fee:decimal adj_cost_base:decimal
 rails generate scaffold account name:string{32} classification:integer{3} currency:string{3}
+
+
+##################################################################
+# Deployment on Production: Setting environment variables
+##################################################################
+You can edit /etc/environment and add an entry for the environment variable needed.
