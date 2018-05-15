@@ -27,17 +27,30 @@ GRANT ALL ON th_test.* to 'th_test'@'localhost' IDENTIFIED BY 'some_password';
 ###### Useful Stuff ##################################################
 # Shows the SQL that would have created 'cliopetra_pets' table.
 > SHOW CREATE TABLE cliopetra_pets
+ SQL Explain
+mysql> EXPLAIN SELECT `trust_line_items`.* FROM `trust_line_items` WHERE `trust_line_items`.`bill_id` = 1 AND (trust_line_items.matter_id IS NULL) ORDER BY date ASC \G;
+##################################################################
+
+##################################################################
+# Altering Tables
+##################################################################
 > ALTER TABLE cliopetra_pets ADD owner_id int(11) NOT NULL
 > ALTER TABLE cliopetra_pets DROP COLUMN owner_id
 # Adding an Index to a table (requires pre-existing column account_id)
 #   Note naming convention of index: index_<table_name>_on_<column_name>
 > ALTER TABLE cliopetra_pets ADD INDEX index_cliopetra_pets_on_account_id (account_id);
+# Add Foreign Key Constraint to existing table (Didn't have any luck with doing it on CREATE)
+> ALTER TABLE friendships ADD FOREIGN KEY (user_id) REFERENCES users (id);
 # Remove Foreign Key Constraint
 > ALTER TABLE cliopetra_pets DROP FOREIGN KEY fk_account_id;
-# SQL Explain
-mysql> EXPLAIN SELECT `trust_line_items`.* FROM `trust_line_items` WHERE `trust_line_items`.`bill_id` = 1 AND (trust_line_items.matter_id IS NULL) ORDER BY date ASC \G;
-##################################################################
 
+##################################################################
+# General Commands
+##################################################################
+# View Constraints on a given table;
+> SELECT COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE TABLE_NAME = 'table to be checked';
 
 #################################################################
 SQL Training
